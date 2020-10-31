@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.works.bryant.mapper.IProductMapper">
+   <resultMap id="ResultMap" type="com.works.bryant.entity.Product">
+        <id property="pId" column="p_id"/>
+        <result property="pName" column="p_name"/>
+        <result property="pImage" column="p_image"/>
+        <result property="pCreate" column="p_create"/>
+    </resultMap>
+    <insert id="addProduct">
+        insert into product (p_name,p_image)
+        value(#{product.pName},#{product.pImage})
+    </insert>
+
+    <select id="selectAll" resultMap="ResultMap">
+        select p_id,p_name,p_image,p_create
+        from product
+        where p_status=#{status}
+    </select>
+</mapper>
